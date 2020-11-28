@@ -1,0 +1,15 @@
+.gridTest {
+    display: grid;
+    gap: 16px;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(2, 150px);
+    }
+}
+
+.p-16 {
+    padding-top: 2.5%;
+}
