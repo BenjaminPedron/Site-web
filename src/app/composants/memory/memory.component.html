@@ -4,5 +4,7 @@
         <app-game-card class="p-16" *ngFor="let c of cards; let idx=index" [data]="c" (cardClicked)="cardClicked(idx)">
         </app-game-card>
     </div>
+    <div class='text-center options'>
+        <app-options (nbCartes)="majNbCartes($event)"></app-options>
+    </div>
 </div>
-<app-options (nbCartes)="majNbCartes($event)"></app-options>

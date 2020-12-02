@@ -33,7 +33,6 @@ import { OppenedOptionComponent, OptionsComponent, NbcardsComponent } from './co
     OptionsComponent,
     OppenedOptionComponent,
     NbcardsComponent,
-    
   ],
   imports: [
     BrowserModule,

@@ -14,8 +14,6 @@ export class MemoryComponent implements OnInit {
   nombreLignes: string = ""
   nombreColonnes: string = ""
 
-  class_name: string;
-
   /* La liste des identifiants d'image */
   //TODO Stocker des path en DB et récupérer ici les identifiants
   cardImages = [
@@ -43,8 +41,8 @@ export class MemoryComponent implements OnInit {
   }
 
   constructor(private dialog: MatDialog) {
-    this.nbCards = 10
-    this.class_name = "grid10"
+    this.nbCards = 5
+
   }
 
   ngOnInit(): void {
@@ -53,9 +51,6 @@ export class MemoryComponent implements OnInit {
 
   setupCards(): void {
     this.cards = [];
-    
-
-    console.log("nombre de cartes " + this.nbCards)
 
     var listeDiviseur = [];
     var listeQuotient = [];
@@ -134,8 +129,7 @@ export class MemoryComponent implements OnInit {
 
       if (nextState === 'matched') {
         this.matchedCount++;
-
-        if (this.matchedCount === this.nbCards + 1) {
+        if (this.matchedCount === this.nbCards) {
           let dialogRef = this.dialog.open(RestartDialogComponent, {
             disableClose: true,
             width: '250px'
@@ -155,9 +149,7 @@ export class MemoryComponent implements OnInit {
   }
 
   majNbCartes(value: number) {
-    console.log('Memory : majNbCartes -- ' + value)
     this.nbCards = value / 2
-    this.class_name = "grid" + value
     this.restart()
   }
 

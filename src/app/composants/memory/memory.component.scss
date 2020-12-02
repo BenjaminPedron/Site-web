@@ -6,10 +6,19 @@
 
 @media (max-width: 600px) {
     .grid {
-        grid-template-columns: repeat(2, 150px);
+        grid-template-columns: repeat(2, 25px);
     }
 }
 
 .p-16 {
     padding-top: 2.5%;
+}
+
+.center-div {
+    margin: 0 auto;
+    width: 100px;
+}
+
+.options {
+    padding-top: 5%;
 }
