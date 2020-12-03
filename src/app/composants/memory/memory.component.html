@@ -5,6 +5,7 @@
         </app-game-card>
     </div>
     <div class='text-center options'>
-        <app-options (nbCartes)="majNbCartes($event)"></app-options>
+        <app-options (nbCartes)="majNbCartes($event)" (click)="restart()"></app-options>
+        <button mat-raised-button (click)="startGame()">Lancer le jeu</button>
     </div>
 </div>

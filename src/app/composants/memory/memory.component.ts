@@ -88,7 +88,7 @@ export class MemoryComponent implements OnInit {
       if(i < this.nbCards) {
         const cardData: CardData = {
           imageId: image,
-          state: 'default',
+          state: 'test',
         };
 
         this.cards.push({ ...cardData });
@@ -97,6 +97,7 @@ export class MemoryComponent implements OnInit {
       i++
     });
 
+    
     this.cards = this.shuffleArray(this.cards);
   }
 
@@ -151,6 +152,12 @@ export class MemoryComponent implements OnInit {
   majNbCartes(value: number) {
     this.nbCards = value / 2
     this.restart()
+  }
+
+  startGame() {
+    this.cards.forEach(card => {
+      card.state = 'default'
+    });
   }
 
 }
