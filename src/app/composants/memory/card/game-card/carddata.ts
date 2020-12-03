@@ -1,4 +1,4 @@
 export interface CardData {
     imageId: string;
-    state: 'default' | 'flipped' | 'matched';
+    state: 'test' | 'default' | 'flipped' | 'matched';
 }
