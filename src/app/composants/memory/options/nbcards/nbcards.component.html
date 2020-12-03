@@ -1,3 +1,3 @@
-<h3>Nombre de cartes : {{valeur}}</h3>
-<mat-slider thumbLabel [displayWith]="formatLabel" min="2" max="10" step="2" (change)="openLink($event)" [value]="valeur">
+<h3>Nombre de cartes : {{display()}}</h3>
+<mat-slider thumbLabel [displayWith]="formatLabel" min="2" max="10" step="2" (change)="onChange($event)" [value]="display()">
 </mat-slider>

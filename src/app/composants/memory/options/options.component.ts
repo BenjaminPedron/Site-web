@@ -33,6 +33,7 @@ export class OppenedOptionComponent {
 
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
+    console.log(NbcardsComponent.value)
     event.preventDefault();
   }
 
@@ -47,29 +48,43 @@ export class OppenedOptionComponent {
   selector: 'app-memory-options-nbcards',
   templateUrl: './nbcards/nbcards.component.html',
 })
-export class NbcardsComponent implements OnInit {
+export class NbcardsComponent {
 
+  /**
+   * La variable sortante nous permettant de prévenir le composant parent d'un changement
+   * @see OppenedOptionComponent
+   */
   @Output()
   public nbCartes: EventEmitter<number> = new EventEmitter<number>();
 
-  static valeure: number = 10
-  valeur!: number;
+  /* Variable de classe mémorisant l'état du slider */
+  static value: number = 10
 
-  ngOnInit(): void {
-    this.valeur = NbcardsComponent.valeure;
+  /**
+   * Fonction d'affichage
+   */
+  display() {
+    return NbcardsComponent.value
   }
 
-  formatLabel(value: number) {
+  /**
+   * Fonction d'affichage dynamique de l'info-bulle
+   * @param value la valeure actuelle 
+   */
+  formatLabel(value: number){
     return value;
   }
 
-  openLink(value: MatSliderChange) {
-    var valeur = 10;
-    if(value.value !== null && value.value !== undefined)
-      valeur = value.value
-    console.log('NbcardsComponent : openLink -- ' + valeur)
-    NbcardsComponent.valeure = valeur
-    this.nbCartes.emit(valeur)
+  /**
+   * Fonction écoutant les changement émis par le slider et modifiant la valeur stockée en mémoire
+   * @param slider Un simple événement de changement émis par le composant MatSlider
+   * @see MatSliderChange
+   */
+  onChange(slider: MatSliderChange) {
+    if(slider.value) NbcardsComponent.value = slider.value
+    this.nbCartes.emit(NbcardsComponent.value)
+
+    console.log('Changement sur la valeur du slider / nombre de cartes')
   }
 
 }
