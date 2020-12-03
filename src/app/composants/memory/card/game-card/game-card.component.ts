@@ -14,6 +14,11 @@ import { CardData } from './carddata';
   styleUrls: ['./game-card.component.scss'],
   animations: [
     trigger('cardFlip', [
+      state('test', style({
+        visibility: 'false',
+        transform: 'scale(0.75)',
+        opacity: 0.05
+      })),
       state('default', style({
         transform: 'none',
       })),
@@ -25,6 +30,9 @@ import { CardData } from './carddata';
         transform: 'scale(0.75)',
         opacity: 0.05
       })),
+      transition('test => default', [
+        animate('200ms')
+      ]),
       transition('default => flipped', [
         animate('200ms')
       ]),
