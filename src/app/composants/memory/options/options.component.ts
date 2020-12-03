@@ -84,7 +84,7 @@ export class NbcardsComponent {
     if(slider.value) NbcardsComponent.value = slider.value
     this.nbCartes.emit(NbcardsComponent.value)
 
-    console.log('Changement sur la valeur du slider / nombre de cartes')
+    console.log('Envoie + mémorisation de la nouvelle valeur du slider / nombre de cartes')
   }
 
 }
