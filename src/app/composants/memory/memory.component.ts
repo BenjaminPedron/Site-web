@@ -15,7 +15,8 @@ export class MemoryComponent implements OnInit {
   nombreColonnes: string = ""
 
   /* La liste des identifiants d'image */
-  //TODO Stocker des path en DB et récupérer ici les identifiants
+  //TODO Les récupérer en random sur unsplash (récupérer le nombre de cartes choisis par l'utilisateur)
+  /* https://unsplash.com/developers */
   cardImages = [
     'pDGNBK9A0sk',
     'fYDrhbVlV1E',
@@ -60,7 +61,7 @@ export class MemoryComponent implements OnInit {
 
     var realnb = this.nbCards * 2
     while (diviseur < realnb){
-      diviseur=diviseur+1; //On regarde si chaque nombre entre 1 et le nbDeCartes sont des diviseurs
+      diviseur = diviseur+  1; //On regarde si chaque nombre entre 1 et le nbDeCartes sont des diviseurs
       if (realnb % diviseur === 0){ //Si c'est un diviseur du nbDeCartes soit que le reste est égale à 0
         listeDiviseur.push(diviseur); //on stocke les valeurs du diviseur et du quotient dans une liste
         listeQuotient.push(realnb/diviseur);
@@ -69,10 +70,10 @@ export class MemoryComponent implements OnInit {
 
     var minimum= realnb; 
   
-    for (let i=0; i<listeDiviseur.length; i++){ //Donc pour chaque diviseur
-      if(Math.abs(listeDiviseur[i]-listeQuotient[i]) <= minimum){ //on calcul la distance entre lui et son quotient, puis on le compare au minimum, si c'est plus petit que le minimum alors:
+    for (let i = 0; i < listeDiviseur.length; i++){ //Donc pour chaque diviseur
+      if(Math.abs(listeDiviseur[i] - listeQuotient[i]) <= minimum){ //on calcul la distance entre lui et son quotient, puis on le compare au minimum, si c'est plus petit que le minimum alors:
        
-        minimum=Math.abs(listeDiviseur[i]-listeQuotient[i]); //le minimum prend la valeur de la distance entre le diviseur et le quotient
+        minimum=Math.abs(listeDiviseur[i] - listeQuotient[i]); //le minimum prend la valeur de la distance entre le diviseur et le quotient
         
         nbLig=listeQuotient[i]; //le nbDeLignes est égale au quotient
         nbCol=listeDiviseur[i]; //le nbDeColonnes est égale au diviseur
@@ -90,7 +91,6 @@ export class MemoryComponent implements OnInit {
           imageId: image,
           state: 'test',
         };
-
         this.cards.push({ ...cardData });
         this.cards.push({ ...cardData });
       }
@@ -138,6 +138,7 @@ export class MemoryComponent implements OnInit {
 
           dialogRef.afterClosed().subscribe(() => {
             this.restart();
+            setTimeout(() => { this.startGame() }, 500);
           });
         }
       }

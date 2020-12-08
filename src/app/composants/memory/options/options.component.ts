@@ -16,10 +16,10 @@ export class OptionsComponent {
 
   openBottomSheet(): void {
     const bottomSheetRef = this._bottomSheet.open(OppenedOptionComponent);
-    bottomSheetRef.afterDismissed().subscribe((dataFromChild) => {
-      console.log('OptionsComponent : openLink -- ' + dataFromChild)
-      if(dataFromChild !== null && dataFromChild !== undefined)
-        this.nbCartes.emit(dataFromChild)
+
+    bottomSheetRef.afterDismissed().subscribe( () => {
+        this.nbCartes.emit(NbcardsComponent.value)
+        console.log("Données envoyées")
     });
   }
 }
@@ -33,13 +33,11 @@ export class OppenedOptionComponent {
 
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
-    console.log(NbcardsComponent.value)
     event.preventDefault();
   }
 
-  nbCartesReceived(value: number) {
-    console.log('OppenedOptionComponent : nbCartesReceived -- ' + value)
-    this._bottomSheetRef.dismiss(value);
+  send() {
+    this._bottomSheetRef.dismiss();
   }
 
 }
@@ -63,17 +61,13 @@ export class NbcardsComponent {
   /**
    * Fonction d'affichage
    */
-  display() {
-    return NbcardsComponent.value
-  }
+  display() { return NbcardsComponent.value }
 
   /**
    * Fonction d'affichage dynamique de l'info-bulle
    * @param value la valeure actuelle 
    */
-  formatLabel(value: number){
-    return value;
-  }
+  formatLabel(value: number) { return value }
 
   /**
    * Fonction écoutant les changement émis par le slider et modifiant la valeur stockée en mémoire
@@ -84,7 +78,7 @@ export class NbcardsComponent {
     if(slider.value) NbcardsComponent.value = slider.value
     this.nbCartes.emit(NbcardsComponent.value)
 
-    console.log('Envoie + mémorisation de la nouvelle valeur du slider / nombre de cartes')
+    console.log('Mémorisation de la nouvelle valeur du slider / nombre de cartes')
   }
 
 }

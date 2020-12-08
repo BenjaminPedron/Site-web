@@ -16,7 +16,7 @@ import { CardData } from './carddata';
     trigger('cardFlip', [
       state('test', style({
         visibility: 'false',
-        transform: 'scale(0.75)',
+        transform: 'scale(0.90)',
         opacity: 0.05
       })),
       state('default', style({
@@ -27,7 +27,7 @@ import { CardData } from './carddata';
       })),
       state('matched', style({
         visibility: 'false',
-        transform: 'scale(0.75)',
+        transform: 'scale(0.90)',
         opacity: 0.05
       })),
       transition('test => default', [
