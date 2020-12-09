@@ -14,10 +14,12 @@ import { CardData } from './carddata';
   styleUrls: ['./game-card.component.scss'],
   animations: [
     trigger('cardFlip', [
-      state('test', style({
-        visibility: 'false',
-        transform: 'scale(0.90)',
-        opacity: 0.05
+      state('*', style({
+        opacity: 0
+      })),
+      state('initial', style({
+        transform: 'scale(0.50)',
+        opacity: 0.10
       })),
       state('default', style({
         transform: 'none',
@@ -26,22 +28,33 @@ import { CardData } from './carddata';
         transform: 'perspective(600px) rotateY(180deg)'
       })),
       state('matched', style({
-        visibility: 'false',
-        transform: 'scale(0.90)',
-        opacity: 0.05
+        transform: 'scale(0.50)',
+        opacity: 0.10
       })),
-      transition('test => default', [
+      /* A l'instanciation de la carte */
+      transition('* => initial', [
+        animate('400ms')
+      ]),
+      /* Au lancement de la partie */
+      transition('initial => default', [
         animate('200ms')
       ]),
+      /* A l'ouverture des options */
+      transition('default => initial', [
+        animate('200ms')
+      ]),
+      /* Quand on retourne une carte */
       transition('default => flipped', [
         animate('200ms')
       ]),
+      /* Quand le joueur ne match pas */
       transition('flipped => default', [
         animate('200ms')
       ]),
+      /* Quand le joueur match */
       transition('* => matched', [
         animate('400ms')
-      ])
+      ]),
     ])
   ]
 })

@@ -47,6 +47,7 @@ export class MemoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('init')
     this.setupCards();
   }
 
@@ -89,16 +90,16 @@ export class MemoryComponent implements OnInit {
       if(i < this.nbCards) {
         const cardData: CardData = {
           imageId: image,
-          state: 'test',
+          state: 'initial',
         };
         this.cards.push({ ...cardData });
         this.cards.push({ ...cardData });
       }
       i++
     });
-
-    
     this.cards = this.shuffleArray(this.cards);
+    console.log(this.cards)
+    setTimeout(() => {}, 200)
   }
 
   cardClicked(index: number): void {
@@ -138,7 +139,6 @@ export class MemoryComponent implements OnInit {
 
           dialogRef.afterClosed().subscribe(() => {
             this.restart();
-            setTimeout(() => { this.startGame() }, 500);
           });
         }
       }
@@ -153,6 +153,12 @@ export class MemoryComponent implements OnInit {
   majNbCartes(value: number) {
     this.nbCards = value / 2
     this.restart()
+  }
+
+  openedOptions() {
+    this.cards.forEach(card => {
+      card.state = 'initial'
+    });
   }
 
   startGame() {

@@ -5,15 +5,25 @@ import { MemoryComponent } from '../memory.component';
 
 
 @Component({
-  selector: 'app-options',
+  selector: 'app-memory-options',
   templateUrl: 'options.component.html',
 })
 export class OptionsComponent {
   constructor(private _bottomSheet: MatBottomSheet, public _memory: MemoryComponent) {}
 
+  /**
+   * La variable sortante nous permettant de prévenir le composant parent d'un changement
+   * @see MemoryComponent
+   */
   @Output()
   public nbCartes: EventEmitter<number> = new EventEmitter<number>();
 
+  /**
+   * Ouvre la fenêtre d'option,
+   * écoute pour savoir quand la fenêtre d'option est fermée,
+   * quand ça arrive, cette fonction se chargera d'envoyer toutes les informations d'options au tableau de jeu pour mise à jour
+   * @see MemoryComponent
+   */
   openBottomSheet(): void {
     const bottomSheetRef = this._bottomSheet.open(OppenedOptionComponent);
 
@@ -31,11 +41,9 @@ export class OptionsComponent {
 export class OppenedOptionComponent {
   constructor(private _bottomSheetRef: MatBottomSheetRef<OppenedOptionComponent>) {}
 
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
-  }
-
+  /**
+   * Dispose des options du jeu, cette fonction (dismiss) est écoutée par le composant parent (afterDismissed.subscribe)
+   */
   send() {
     this._bottomSheetRef.dismiss();
   }
